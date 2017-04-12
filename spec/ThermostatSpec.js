@@ -5,7 +5,16 @@ describe('Thermostat', function() {
     thermostat = new Thermostat;
   });
 
-  it('has a default temperature constant set to 20 degrees', function() {
-    expect(thermostat.DEFAULTTEMPERATURE).toEqual(20);
+  describe('DEFAULTTEMPERATURE', function(){
+    it('has a default temperature constant set to 20 degrees', function() {
+      expect(thermostat.DEFAULTTEMPERATURE).toEqual(20);
+    });
+  });
+  
+  describe('#up', function(){
+    it('increases the temperature by 1', function(){
+      thermostat.up();
+      expect(thermostat.temperature).toEqual(21);
+    });
   });
 });
