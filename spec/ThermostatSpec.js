@@ -41,11 +41,22 @@ describe('Thermostat', function() {
     it('is on by default', function() {
       expect(thermostat.isPowerSavingModeEnabled).toBe(true);
     });
-  });
 
-  describe('when power saving mode is on', function() {
-    it('maximum temperature is 25 degrees', function() {
-      expect(thermostat.maxTemperature()).toEqual(25);
+    it('can be disabled', function() {
+      thermostat.disablePowerSavingMode();
+      expect(thermostat.isPowerSavingModeEnabled).toBe(false);
     });
   });
+
+  describe('maximum temperature', function() {
+
+    it('is 25 degrees when power saving mode is enabled', function() {
+      expect(thermostat.maxTemperature()).toEqual(25);
+      });
+
+    it('is 32 degrees when power saving mode is disabled', function() {
+      thermostat.disablePowerSavingMode();
+      expect(thermostat.maxTemperature()).toEqual(32);
+      });
+    });
 });

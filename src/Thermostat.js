@@ -22,8 +22,11 @@ Thermostat.prototype.down = function(){
 
 Thermostat.prototype.maxTemperature = function() {
   if (this.isPowerSavingModeEnabled === true) {
-  return this.MAXIMUMTEMPERATUREPOWERSAVE
+  return this.MAXIMUMTEMPERATUREPOWERSAVE;
   } else
-  { return this.MAXIMUMTEMPERATURE
-  };
+   return this.MAXIMUMTEMPERATURE;
+};
+
+Thermostat.prototype.disablePowerSavingMode = function() {
+  this.isPowerSavingModeEnabled = false;
 };
