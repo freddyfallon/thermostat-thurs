@@ -37,7 +37,7 @@ describe('Feature tests', function(){
   });
   describe('when power saving mode is off', function() {
     it('maximum temperature is 32 degrees', function() {
-      thermostat.disablePowerSavingMode();
+      thermostat.togglePowerSavingMode();
       expect(thermostat.maxTemperature()).toEqual(32);
     });
   });

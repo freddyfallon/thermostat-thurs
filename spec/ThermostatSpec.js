@@ -43,7 +43,7 @@ describe('Thermostat', function() {
     });
 
     it('can be disabled', function() {
-      thermostat.disablePowerSavingMode();
+      thermostat.togglePowerSavingMode();
       expect(thermostat.isPowerSavingModeEnabled).toBe(false);
     });
   });
@@ -55,7 +55,7 @@ describe('Thermostat', function() {
       });
 
     it('is 32 degrees when power saving mode is disabled', function() {
-      thermostat.disablePowerSavingMode();
+      thermostat.togglePowerSavingMode();
       expect(thermostat.maxTemperature()).toEqual(32);
       });
     });
