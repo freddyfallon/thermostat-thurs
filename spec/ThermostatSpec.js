@@ -11,6 +11,12 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('MAXIMUMTEMPERATURE', function(){
+    it('has a maximum temperature set to 32 degrees', function() {
+      expect(thermostat.MAXIMUMTEMPERATURE).toEqual(32);
+    });
+  });
+
   describe('#up', function(){
     it('increases the temperature by 1', function(){
       thermostat.up();
@@ -31,9 +37,15 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('power saving mode', function() {
+    it('is on by default', function() {
+      expect(thermostat.isPowerSavingModeEnabled).toBe(true);
+    });
+  });
+
   describe('when power saving mode is on', function() {
     it('maximum temperature is 25 degrees', function() {
-      expect(thermostat.temperature).toEqual(25);
+      expect(thermostat.maxTemperature()).toEqual(25);
     });
   });
 });

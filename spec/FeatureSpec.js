@@ -31,7 +31,7 @@ describe('Feature tests', function(){
 
   describe('when power saving mode is on', function() {
     it('maximum temperature is 25 degrees', function() {
-      expect(thermostat.temperature).toEqual(25);
+      expect(thermostat.maxTemperature()).toEqual(25);
     });
   });
 });
