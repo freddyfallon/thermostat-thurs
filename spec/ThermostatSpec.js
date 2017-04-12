@@ -59,4 +59,12 @@ describe('Thermostat', function() {
       expect(thermostat.maxTemperature()).toEqual(32);
       });
     });
+
+  describe('reset function', function() {
+    it('resets the temperature to 20', function() {
+      thermostat.up();
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
 });

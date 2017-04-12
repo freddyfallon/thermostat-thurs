@@ -4,6 +4,7 @@ describe('Feature tests', function(){
   beforeEach(function(){
     thermostat = new Thermostat;
   });
+
   describe('temperature', function(){
     it('Thermostat is set to 20 degrees by default', function(){
       expect(thermostat.temperature).toEqual(20);
@@ -38,6 +39,31 @@ describe('Feature tests', function(){
     it('maximum temperature is 32 degrees', function() {
       thermostat.disablePowerSavingMode();
       expect(thermostat.maxTemperature()).toEqual(32);
+    });
+  });
+
+  describe('reset function', function() {
+    it('resets the temperature to 20', function() {
+      thermostat.up();
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
+
+  describe('usage', function() {
+    it('returns low usage when temperature is less than 18', function() {
+     thermostat.temperature = 17;
+      expect(thermostat.usage()).toEqual('low-usage');
+    });
+
+    it('returns high usage when temperature is more than 25', function() {
+     thermostat.temperature = 26;
+      expect(thermostat.usage()).toEqual('high-usage');
+    });
+
+    it('returns medium usage when temperature is less than 25 but more than 18', function() {
+     thermostat.temperature = 20;
+      expect(thermostat.usage()).toEqual('medium-usage');
     });
   });
 });
