@@ -1,6 +1,9 @@
 function Thermostat() {
   this.temperature = this.DEFAULTTEMPERATURE;
+  this.minimumTemperature = this.MINIMUMTEMPERATURE;
 };
+
+Thermostat.prototype.MINIMUMTEMPERATURE = 10;
 
 Thermostat.prototype.DEFAULTTEMPERATURE = 20;
 
