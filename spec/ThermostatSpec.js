@@ -10,7 +10,7 @@ describe('Thermostat', function() {
       expect(thermostat.DEFAULTTEMPERATURE).toEqual(20);
     });
   });
-  
+
   describe('#up', function(){
     it('increases the temperature by 1', function(){
       thermostat.up();
@@ -22,6 +22,12 @@ describe('Thermostat', function() {
     it('#down decreases the temperature by 1 degree', function() {
       thermostat.down();
       expect(thermostat.temperature).toEqual(19);
+    });
+  });
+
+  describe('minimum temperature', function(){
+    it('Minimum temperature is 10 degrees', function(){
+      expect(thermostat.minimumTemperature).toEqual(10);
     });
   });
 });
