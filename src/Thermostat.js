@@ -17,11 +17,19 @@ Thermostat.prototype.LOWUSAGELIMIT = 18;
 Thermostat.prototype.HIGHUSAGELIMIT = 25;
 
 Thermostat.prototype.up = function() {
-
-  this.temperature += 1;
+  if (this.isPowerSavingModeEnabled === true && (this.temperature + 1 > 25)) {
+    throw new Error("Power saving mode on: maximum temperature is 25 degrees");
+  }
+  else if (this.isPowerSavingModeEnabled === false && (this.temperature + 1 > 32)) {
+    throw new Error("Power saving mode off: maximum temperature is 32 degrees");
+  }
+  return (this.temperature += 1);
 };
 
 Thermostat.prototype.down = function(){
+  if ((this.temperature -1) < 10) {
+    throw new Error("Minimum temperature is 10 degrees");
+  }
   this.temperature -= 1;
 };
 
@@ -32,15 +40,16 @@ Thermostat.prototype.maxTemperature = function() {
    return this.MAXIMUMTEMPERATURE;
 };
 
-Thermostat.prototype.togglePowerSavingMode = function() {
-  if (this.isPowerSavingModeEnabled === false && this.temperature > 25) {
-    this.temperature = 24;
+Thermostat.prototype.powerSavingOff = function() {
+  this.isPowerSavingModeEnabled = false;
+};
+
+Thermostat.prototype.powerSavingOn = function() {
+  if (this.temperature > 25){
+    this.reset();
     this.isPowerSavingModeEnabled = true;
-  } else
-    if (this.isPowerSavingModeEnabled === false) {
-    this.isPowerSavingModeEnabled = true;
-  } else
-    this.isPowerSavingModeEnabled = false;
+  }
+  this.isPowerSavingModeEnabled = true;
 };
 
 Thermostat.prototype.reset = function() {

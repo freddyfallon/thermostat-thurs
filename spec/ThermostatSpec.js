@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Thermostat', function() {
   var thermostat;
 
@@ -22,12 +24,34 @@ describe('Thermostat', function() {
       thermostat.up();
       expect(thermostat.temperature).toEqual(21);
     });
+
+    it('has a maximum temperature of 25 if power saving mode is on', function() {
+      for (var i = 0; i < 5; i++){
+        thermostat.up();
+      };
+      expect(function(){thermostat.up();}).toThrowError("Power saving mode on: maximum temperature is 25 degrees");
+    });
+
+    it('has a maximum temperature of 32 if power saving mode is off', function() {
+      thermostat.powerSavingOff();
+      for (var i = 0; i < 12; i++){
+        thermostat.up();
+      };
+      expect(function(){thermostat.up();}).toThrowError("Power saving mode off: maximum temperature is 32 degrees");
+    });
   });
 
   describe('#down', function() {
     it('#down decreases the temperature by 1 degree', function() {
       thermostat.down();
       expect(thermostat.temperature).toEqual(19);
+    });
+
+    it('has a minimum temperature of 10', function() {
+      for (var i = 0; i < 10; i++) {
+        thermostat.down();
+    };
+      expect(function(){thermostat.down();}).toThrowError("Minimum temperature is 10 degrees");
     });
   });
 
@@ -42,10 +66,17 @@ describe('Thermostat', function() {
       expect(thermostat.isPowerSavingModeEnabled).toBe(true);
     });
 
-    it('can be disabled', function() {
-      thermostat.togglePowerSavingMode();
+    it('can be turned off', function() {
+      thermostat.powerSavingOff();
       expect(thermostat.isPowerSavingModeEnabled).toBe(false);
     });
+
+    it('can be turned on', function() {
+      thermostat.powerSavingOff();
+      thermostat.powerSavingOn();
+      expect(thermostat.isPowerSavingModeEnabled).toBe(true);
+    });
+
   });
 
   describe('maximum temperature', function() {
@@ -55,7 +86,7 @@ describe('Thermostat', function() {
       });
 
     it('is 32 degrees when power saving mode is disabled', function() {
-      thermostat.togglePowerSavingMode();
+      thermostat.powerSavingOff();
       expect(thermostat.maxTemperature()).toEqual(32);
       });
     });
