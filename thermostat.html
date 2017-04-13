@@ -7,9 +7,12 @@
 </head>
 <body>
     <h1>Thermostat</h1>
+    <section>
+    <h1 id="temperature"></h1>
+    <h1 id="use"></h1>
       <button id="down"> Down </button>
       <button id='up'> Up </button>
-      <button id='reset-btn'> Reset </button>
+      <button id='reset-temp'> Reset </button>
       <button id='usage'> Usage </button>
     <p>
         Power saving mode is <span id='power-saving-status'>on</span>
@@ -18,18 +21,47 @@
       <button id='power-saving-on'>PSM on</button>
       <button id='power-saving-off'>PSM off</button>
     </p>
+  </section>
   <script>
     $( document ).ready(function() {
       var thermostat = new Thermostat();
       $('#temperature').text(thermostat.temperature);
+
       $('#up').on('click', function(){
         thermostat.up();
+        updateTemperature();
+      });
+
+      $('#down').on('click', function(){
+        thermostat.down();
+        updateTemperature();
+      });
+
+      $('#power-saving-off').on('click', function(){
+        thermostat.powerSavingOff();
+        $('#power-saving-status').text('off');
+      });
+
+      $('#power-saving-on').on('click', function() {
+        thermostat.powerSavingOn();
+        updateTemperature();
+        $('#power-saving-status').text('on');
+      });
+
+      $('#usage').on('click', function() {
+        $('#use').text(thermostat.usage());
+      });
+
+      $('#reset-temp').on('click', function(){
+        thermostat.reset();
         updateTemperature();
       });
 
       function updateTemperature(){
         $('#temperature').text(thermostat.temperature);
       };
+
+    });
   </script>
 </body>
 </html>
