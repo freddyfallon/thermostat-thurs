@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <link rel='stylesheet' type='text/css' href='public/main.css'>
+<link href="https://fonts.googleapis.com/css?family=Orbitron:900|Rajdhani|Russo+One" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" -->
 <html>
 <head>
   <title>Thermostat</title>
@@ -7,24 +10,34 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
+    <div class="jumbotron text-center">
     <h1>Thermostat</h1>
+  </div>
     <section>
-    <h1 id="temperature"></h1>
-    <h1 id="use"></h1>
-      <button id="down"> Down </button>
-      <button id='up'> Up </button>
+    <h3 id="use"></h3>
+    <div class="col-md-3">
+      <button id='up' class="btn btn-default"> Up </button>
+      <button id="down" class="btn btn-default"> Down </button>
+    </div>
+    <div class="col-md-6">
+      <div id="circle">
+        <h2 id="temperature"></h2>
+      </div>
+    </div>
+    <div class="col-md-3">
       <button id='reset-temp'> Reset </button>
       <button id='usage'> Usage </button>
-    <p>
+    </div>
+    <h3>
         Power saving mode is <span id='power-saving-status'>on</span>
-    </p>
+    </h3>
     <p>
       <button id='power-saving-on'>PSM on</button>
       <button id='power-saving-off'>PSM off</button>
     </p>
   </section>
   <section>
-    <h1>Current temperature: <span id="current-temperature"></span></h1>
+    <h3>Current temperature: <span id="current-temperature"></span></h3>
     <form id="select-city">
       <input id="current-city" type="text" placeholder="Enter a city"></input>
       <input type="submit"></input>
